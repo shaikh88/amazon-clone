@@ -5,25 +5,15 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { db } from "../services/firebase";
 import {Link} from 'react-router-dom';
 
-function Header({ cart,setProducts }) {
+function Header({ cart,setProducts,setSearch,search }) {
 
 
-    // search query words
-
-  const [search, setSearch] = useState("");
-
-
-//  query to firestore database for exact match
+// just to prevent page re-load
 
   const runquery=(e)=> {
     e.preventDefault();
     console.log(search);
     console.log("effect has run");
-    db.collection("items").where("name","==",`${search}`).onSnapshot((snapshot) =>
-      setProducts(
-        snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
-      )
-    );
   }
 
 

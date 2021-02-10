@@ -3,14 +3,18 @@ import "./Home.css";
 import Product from "./Product";
 import banner from "./images/banner34.jpg";
 
-function Home({ products, cart, setCart }) {
+function Home({ products, cart, setCart,search }) {
+
+
   return (
     <div className="home">
       <div className="home__container">
         <img className="home__image" src={banner} alt="" />
         <div className="home__row">
           {products ? (
-            products.map((post) => (
+            products
+            .filter((post) => (post.data.name.toLowerCase().includes(search.toLowerCase())))
+            .map((post) => (
               <div key={post.id} className="home__row">
                 <ul key={post.id}>
                   <li key={post.id} className="list__name">

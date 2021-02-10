@@ -8,6 +8,13 @@ import ProductPage from "./components/ProductPage";
 import Footer from "./components/Footer";
 
 function App() {
+
+ // search query words
+
+  const [search, setSearch] = useState("");
+
+
+
   // products from the database
   const [products, setProducts] = useState(null);
 
@@ -28,10 +35,10 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Header cart={cart} setProducts={setProducts}/>
+      <Header cart={cart} setProducts={setProducts} search={search} setSearch={setSearch}/>
         <Switch>
           <Route exact path="/">
-            <Home products={products} cart={cart} setCart={setCart} />
+            <Home products={products} cart={cart} setCart={setCart} search={search}/>
           </Route>
           {products ? (
             products.map((post) => (
